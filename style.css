@@ -78,11 +78,11 @@ button {
 }
 
 .future-bg {
-  background-image: url("assets/future-message.png");
+  background-image: url("assets/future-noise-bg.png");
 }
 
 .main-bg {
-  background-image: url("assets/main-command-screen.png");
+  background-image: url("assets/weekly-room-bg.png");
 }
 
 .event-bg {
@@ -93,12 +93,16 @@ button {
   background-image: url("assets/ending-screen.png");
 }
 
+.final-week-bg {
+  background-image: url("assets/final-week-before.png");
+}
+
 .title-overlay {
   background: linear-gradient(130deg, rgba(8, 13, 20, 0.82) 0%, rgba(8, 13, 20, 0.58) 45%, rgba(8, 13, 20, 0.75) 100%);
 }
 
 .future-overlay {
-  background: linear-gradient(145deg, rgba(4, 6, 10, 0.86), rgba(10, 16, 24, 0.76));
+  background: linear-gradient(145deg, rgba(4, 6, 10, 0.9), rgba(10, 16, 24, 0.8));
 }
 
 .main-overlay {
@@ -228,7 +232,7 @@ button {
     linear-gradient(transparent 48%, rgba(255, 255, 255, 0.05) 49%, transparent 50%),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
   mix-blend-mode: screen;
-  animation: noisePulse 0.28s steps(2) infinite;
+  animation: noisePulse 0.24s steps(2) infinite;
   pointer-events: none;
 }
 
@@ -353,6 +357,31 @@ button {
   color: #fef9f1;
   background: rgba(10, 18, 28, 0.72);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.future-comment-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.future-comment-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #f8ecdf;
+}
+
+.future-cutin {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: contain;
+  opacity: 1;
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25));
 }
 
 .player-pane h2,
@@ -489,6 +518,43 @@ button {
   padding: 24px;
   display: grid;
   gap: 14px;
+}
+
+.event-cg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.future-comment-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.event-future-comment {
+  line-height: 1.75;
+  font-size: 14px;
+  color: #f3eee8;
+}
+
+.checkpoint-meta {
+  display: grid;
+  gap: 8px;
+}
+
+.checkpoint-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  line-height: 1.65;
 }
 
 .event-week {
@@ -656,6 +722,19 @@ button {
 
   .talk-text {
     min-height: 180px;
+  }
+
+  .future-comment-head {
+    align-items: flex-start;
+  }
+
+  .future-cutin {
+    width: 72px;
+    height: 72px;
+  }
+
+  .event-cg {
+    aspect-ratio: 4 / 3;
   }
 
   .main-grid {

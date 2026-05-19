@@ -83,25 +83,59 @@
 
         <section class="message-pane ui-panel" aria-live="polite">
           <h2>メッセージ</h2>
+          <div class="future-comment-head">
+            <img id="futureCutin" class="future-cutin" src="assets/future-bad.png" alt="未来の自分のカットイン" />
+            <p id="futureCommentText" class="future-comment-text">未来の自分: 深呼吸して、一個ずつ選ぼう。</p>
+          </div>
           <p id="messageText" class="message-text">未来通信を受け取ったら、今週の行動をひとつ選んでください。</p>
         </section>
       </div>
     </section>
 
     <section id="eventScreen" class="screen event-screen hidden">
-      <div class="screen-background event-bg" aria-hidden="true"></div>
+      <div id="eventBackground" class="screen-background event-bg" aria-hidden="true"></div>
       <div class="bg-overlay event-overlay" aria-hidden="true"></div>
 
       <article class="event-card ui-panel dark-panel" aria-live="polite">
         <p class="event-week" id="eventWeekLabel">臨時イベント</p>
         <h2 id="eventTitle">イベント名</h2>
+        <img id="eventImage" class="event-cg" src="assets/event-screen.png" alt="イベント画像" />
         <p id="eventBody" class="event-body"></p>
+        <div class="future-comment-box">
+          <img id="eventFutureCutin" class="future-cutin" src="assets/future-bad.png" alt="未来の自分" />
+          <p id="eventFutureComment" class="event-future-comment"></p>
+        </div>
         <div id="eventChoices" class="choice-list"></div>
       </article>
     </section>
 
+    <section id="checkpointScreen" class="screen event-screen hidden">
+      <div id="checkpointBackground" class="screen-background event-bg" aria-hidden="true"></div>
+      <div class="bg-overlay event-overlay" aria-hidden="true"></div>
+
+      <article class="event-card ui-panel dark-panel" aria-live="polite">
+        <p class="event-week" id="checkpointWeekLabel">中間チェック</p>
+        <h2 id="checkpointTitle">チェックポイント</h2>
+        <p id="checkpointBody" class="event-body"></p>
+        <div id="checkpointMeta" class="checkpoint-meta"></div>
+        <button id="checkpointButton" class="main-button">次へ進む</button>
+      </article>
+    </section>
+
+    <section id="finalWeekScreen" class="screen event-screen hidden">
+      <div class="screen-background final-week-bg" aria-hidden="true"></div>
+      <div class="bg-overlay event-overlay" aria-hidden="true"></div>
+
+      <article class="event-card ui-panel dark-panel" aria-live="polite">
+        <p class="event-week">最終週直前</p>
+        <h2>未来の自分</h2>
+        <p class="event-body" id="finalWeekBody"></p>
+        <button id="finalWeekButton" class="main-button">最後の週を選ぶ</button>
+      </article>
+    </section>
+
     <section id="endingScreen" class="screen ending-screen hidden">
-      <div class="screen-background ending-bg" aria-hidden="true"></div>
+      <div id="endingBackground" class="screen-background ending-bg" aria-hidden="true"></div>
       <div class="bg-overlay ending-overlay" aria-hidden="true"></div>
 
       <article class="ending-layout ui-panel">
