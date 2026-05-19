@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>人生分岐シミュレーター | 3ヶ月後の自分を救え</title>
+  <meta name="description" content="未来の自分からの通信をきっかけに、12週間の選択で3ヶ月後を変える生活コマンドシミュレーション。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="titleScreen" class="screen title-screen">
+      <div class="screen-background title-bg" aria-hidden="true"></div>
+      <div class="bg-overlay title-overlay" aria-hidden="true"></div>
+
+      <article class="ui-panel title-panel">
+        <p class="eyebrow">LIFE COMMAND SIMULATION</p>
+        <h1>人生分岐シミュレーター</h1>
+        <p class="title-sub">3ヶ月後の自分を救え</p>
+        <p class="title-copy">
+          未来の自分が、かなりひどい姿で助けを求めてきました。<br />
+          小さな選択を重ねて、最悪の3ヶ月後を回避してください。
+        </p>
+        <div class="title-actions">
+          <button id="openFutureMessage" class="main-button">未来通信を開く</button>
+          <button id="resumeButton" class="sub-button hidden">前回の続きから始める</button>
+        </div>
+        <p class="small-note">※人生はオートセーブです。</p>
+      </article>
+    </section>
+
+    <section id="futureScreen" class="screen future-screen hidden">
+      <div class="screen-background future-bg" aria-hidden="true"></div>
+      <div class="bg-overlay future-overlay" aria-hidden="true"></div>
+      <div class="noise-layer" aria-hidden="true"></div>
+
+      <article class="future-layout">
+        <div class="future-character-wrap ui-panel dark-panel">
+          <img id="futureBadImage" class="character-image future-character" src="assets/future-bad.png" alt="3ヶ月後の自分" />
+        </div>
+
+        <section class="talk-window ui-panel dark-panel" aria-live="polite">
+          <h2>未来通信</h2>
+          <p id="futureDialogueText" class="talk-text"></p>
+          <div id="futureChoices" class="choice-list"></div>
+        </section>
+      </article>
+    </section>
+
+    <section id="mainScreen" class="screen main-screen hidden">
+      <div class="screen-background main-bg" aria-hidden="true"></div>
+      <div class="bg-overlay main-overlay" aria-hidden="true"></div>
+
+      <div class="main-grid">
+        <header class="top-bar ui-panel">
+          <div>
+            <p id="weekLabel" class="week-label">1週目</p>
+            <p id="remainingLabel" class="remaining-label">3ヶ月後まで残り 12週間</p>
+          </div>
+          <button id="resetRunButton" class="sub-button">最初からやり直す</button>
+        </header>
+
+        <aside class="player-pane ui-panel">
+          <h2>現在の自分</h2>
+          <div class="player-frame">
+            <img id="playerImage" class="character-image player-image" src="assets/player-normal.png" alt="現在の自分" />
+          </div>
+          <p id="playerStateLabel" class="player-state-label">通常</p>
+        </aside>
+
+        <section class="command-pane ui-panel">
+          <h2>今週の行動コマンド</h2>
+          <div id="commandList" class="command-list"></div>
+          <div class="continue-row">
+            <button id="nextWeekButton" class="main-button hidden">次の週へ進む</button>
+          </div>
+        </section>
+
+        <aside class="status-pane ui-panel">
+          <h2>ステータス</h2>
+          <div id="statusList" class="status-list"></div>
+        </aside>
+
+        <section class="message-pane ui-panel" aria-live="polite">
+          <h2>メッセージ</h2>
+          <p id="messageText" class="message-text">未来通信を受け取ったら、今週の行動をひとつ選んでください。</p>
+        </section>
+      </div>
+    </section>
+
+    <section id="eventScreen" class="screen event-screen hidden">
+      <div class="screen-background event-bg" aria-hidden="true"></div>
+      <div class="bg-overlay event-overlay" aria-hidden="true"></div>
+
+      <article class="event-card ui-panel dark-panel" aria-live="polite">
+        <p class="event-week" id="eventWeekLabel">臨時イベント</p>
+        <h2 id="eventTitle">イベント名</h2>
+        <p id="eventBody" class="event-body"></p>
+        <div id="eventChoices" class="choice-list"></div>
+      </article>
+    </section>
+
+    <section id="endingScreen" class="screen ending-screen hidden">
+      <div class="screen-background ending-bg" aria-hidden="true"></div>
+      <div class="bg-overlay ending-overlay" aria-hidden="true"></div>
+
+      <article class="ending-layout ui-panel">
+        <header class="ending-head">
+          <p class="eyebrow">RESULT</p>
+          <h2 id="endingName">エンディング名</h2>
+          <p id="avoidRate" class="avoid-rate">未来回避率 0%</p>
+        </header>
+
+        <div class="ending-main-grid">
+          <div class="ending-character-wrap">
+            <img id="futureEndingImage" class="character-image ending-character" src="assets/future-saved.png" alt="3ヶ月後の自分" />
+          </div>
+
+          <div class="ending-summary">
+            <h3>3ヶ月後の自分の状態</h3>
+            <p id="futureStateText"></p>
+
+            <h3>改善できたステータス</h3>
+            <ul id="improvedList" class="bullet-list"></ul>
+
+            <h3>まだ残っているリスク</h3>
+            <ul id="riskList" class="bullet-list"></ul>
+
+            <h3>未来の自分からのメッセージ</h3>
+            <p id="futureMessageText"></p>
+
+            <h3>来週の行動提案</h3>
+            <ul id="nextActionList" class="bullet-list"></ul>
+          </div>
+        </div>
+
+        <section class="service-box">
+          <h3>次にできること</h3>
+          <p class="small-note">※一部、広告リンクを含みます。</p>
+          <ul class="service-list">
+            <li><a href="#" aria-disabled="true">転職先を調べる</a><span>今の職場以外の選択肢を確認する。</span></li>
+            <li><a href="#" aria-disabled="true">家計を見直す</a><span>毎月の不安を数字に変える。</span></li>
+            <li><a href="#" aria-disabled="true">学び直しを始める</a><span>未来の選択肢を少し増やす。</span></li>
+            <li><a href="#" aria-disabled="true">誰かに相談する</a><span>ひとり会議を終わらせる。</span></li>
+            <li><a href="#" aria-disabled="true">副業を小さく試す</a><span>いきなり辞めずに、現実を検証する。</span></li>
+          </ul>
+        </section>
+
+        <section class="report-box">
+          <h3>3ヶ月後の自分を救う行動レポート</h3>
+          <p>
+            あなたの選択とステータスをもとに、
+            落ちやすい未来、改善できたポイント、来週からの行動プランをまとめます。
+          </p>
+          <button id="reportButton" class="main-button">980円で行動レポートを受け取る</button>
+        </section>
+
+        <footer class="ending-actions">
+          <button id="restartButton" class="main-button">もう一度3ヶ月をやり直す</button>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
